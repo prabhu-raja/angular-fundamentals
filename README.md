@@ -80,3 +80,10 @@ The project uses `webpack` to build and compile all of our assets. This will do 
 - Allow us to use SASS for our component's CSS files
 - Provide the polyfills needed to run our app in all modern browsers
 - Mock a JSON backend using [json-server](https://github.com/typicode/json-server)
+
+### Notable changes in v5
+Just a few things to take note on that've changed since the course was recorded. These are very brief, and worth addressing after you've completed the course as they are just minor changes.
+
+<template> is now <ng-template>
+Http is now HttpClient
+This change is almost identical but also comes with some additional typing options
