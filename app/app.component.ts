@@ -10,7 +10,7 @@ interface Passenger {
   styleUrls: ['app.component.scss'],
   template: `
   <div class="app">
-    <h3>Airline Passengers</h3>
+    <h3>Airline Passengers - [class]</h3>
     <ul>
       <li *ngFor="let psgr of passengers; let i = index">
       <span 
@@ -22,6 +22,7 @@ interface Passenger {
     </ul>
     <!-- -->
     <hr>
+    <h3>Airline Passengers - [ngClass]</h3>    
     <ul>
       <li *ngFor="let psgr of passengers; let i = index">
       <span 
@@ -29,6 +30,32 @@ interface Passenger {
         [ngClass]="{
           'checked-in': psgr.checkedIn,
           'checked-out': !psgr.checkedIn
+        }">
+      </span>
+        {{ i }} - {{ psgr.fullname }}
+      </li>
+    </ul>
+    <!-- -->
+    <hr>
+    <h3>Airline Passengers - [style]</h3>    
+    <ul>
+      <li *ngFor="let psgr of passengers; let i = index">
+      <span 
+        class="status"
+        [style.backgroundColor]="(psgr.checkedIn ? '#2ecc71': '#c0392b')">
+      </span>
+        {{ i }} - {{ psgr.fullname }}
+      </li>
+    </ul>
+    <!-- -->
+    <hr>
+    <h3>Airline Passengers - [ngStyle]</h3>    
+    <ul>
+      <li *ngFor="let psgr of passengers; let i = index">
+      <span 
+        class="status"
+        [ngStyle]="{
+          backgroundColor: (psgr.checkedIn ? '#2ecc71': '#c0392b')
         }">
       </span>
         {{ i }} - {{ psgr.fullname }}
