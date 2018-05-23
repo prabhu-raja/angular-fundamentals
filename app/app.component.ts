@@ -12,19 +12,29 @@ interface Passenger {
   <div class="app">
     <h3>Airline Passengers</h3>
     <ul>
-      <template ngFor let-psgr [ngForOf]="passengers" let-i="index" >
-        <li>
-          {{ i }} - {{ psgr.fullname }}
-        </li>
-      </template>
-    </ul>
-
-    <h3>Airline Passengers</h3>
-    <ul>
       <li *ngFor="let psgr of passengers; let i = index">
+      <span 
+        class="status"
+        [class.checked-in]="psgr.checkedIn">
+      </span>
         {{ i }} - {{ psgr.fullname }}
       </li>
     </ul>
+    <!-- -->
+    <hr>
+    <ul>
+      <li *ngFor="let psgr of passengers; let i = index">
+      <span 
+        class="status"
+        [ngClass]="{
+          'checked-in': psgr.checkedIn,
+          'checked-out': !psgr.checkedIn
+        }">
+      </span>
+        {{ i }} - {{ psgr.fullname }}
+      </li>
+    </ul>
+
 
   </div>
   `
