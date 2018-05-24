@@ -10,30 +10,12 @@ import { Passenger } from "../../models/passenger.interface";
             [items]="passengers">
         </passenger-count>
 
-        <passenger-detail>
+        <h5>Detail 🤩 Component</h5>
+        <passenger-detail 
+            *ngFor="let psgr of passengers" 
+            [detail]="psgr">
         </passenger-detail>
-
-        <ul>
-            <li *ngFor="let psgr of passengers; let i = index">
-                <span 
-                    class="status"
-                    [class.checked-in]="psgr.checkedIn">
-                </span>
-
-                {{ i }} - {{ psgr.fullname }}
-
-                <!--<p>{{psgr | json}}</p>-->
-
-                <div class="date">
-                    Check in date: {{psgr.checkInDate ? (psgr.checkInDate | date:'yMMMMd') : 'Not Checked in'}}
-                </div>
-
-                <div class="children">
-                    Children: {{psgr.children?.length || 0}}
-                </div>
-
-            </li>
-        </ul>
+        <hr>
     </div>
     `
 })
