@@ -13,7 +13,9 @@ import { Passenger } from "../../models/passenger.interface";
         <h5>Detail 🤩 Component</h5>
         <passenger-detail 
             *ngFor="let psgr of passengers" 
-            [detail]="psgr">
+            [detail]="psgr" 
+            (edit)="handleEdit($event)"
+            (remove)="handleRemove($event)">
         </passenger-detail>
         <hr>
     </div>
@@ -64,6 +66,14 @@ export class PassengerDashboardComponent implements OnInit {
               children   : null
             }
         ];
+    }
+
+    handleEdit(evt: any) {
+        console.log('⚡️📝', evt);        
+    }
+
+    handleRemove(evt: any) {
+        console.log('⚡️🙅‍♂️', evt);
     }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Passenger } from './../../models/passenger.interface';
 
 @Component({
@@ -6,22 +6,60 @@ import { Passenger } from './../../models/passenger.interface';
     styleUrls: ['passenger-detail.component.scss'],
     template: `
     <div>
-        
         <span 
             class="status"
             [class.checked-in]="detail.checkedIn">
         </span>
-        {{ detail.fullname }}
+        <div *ngIf="isEditing">
+            <input 
+                #psgrName
+                type="text" 
+                [value]="detail.fullname" 
+                (input)="onNameChange(psgrName.value)">
+        </div>
+        <div *ngIf="!isEditing">
+            {{ detail.fullname }}
+        </div>
         <div class="date">
             Check in date 📅: {{detail.checkInDate ? (detail.checkInDate | date:'yMMMMd') : 'Not Checked in'}}
         </div>
         <div class="children">
             Children 👶: {{detail.children?.length || 0}}
         </div>
+        <button (click)="toggleEdit()">
+            {{isEditing ? 'Done' : 'Edit'}}
+        </button>
+        <button (click)="onRemove()">
+            Remove
+        </button>
     </div>
+    <br>
     `
 })
 export class PassengerDetailComponent {
+    isEditing: boolean =  false;
+
     @Input()
     detail: Passenger;
+
+    @Output()
+    edit: EventEmitter<any> = new EventEmitter();
+
+    @Output()
+    remove: EventEmitter<any> = new EventEmitter();
+
+    onNameChange(val: string) {
+        this.detail.fullname = val;
+    }
+    
+    toggleEdit() {
+        if(this.isEditing) {
+            this.edit.emit(this.detail);
+        }
+        this.isEditing = !this.isEditing;
+    }
+
+    onRemove() {
+        this.remove.emit(this.detail);
+    }
 }
