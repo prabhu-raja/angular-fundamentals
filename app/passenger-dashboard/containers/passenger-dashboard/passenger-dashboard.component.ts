@@ -9,7 +9,10 @@ import { Passenger } from "../../models/passenger.interface";
         <passenger-count 
             [items]="passengers">
         </passenger-count>
-
+        <div *ngFor="let psngr of passengers">
+            {{psngr.fullname}}
+        </div>
+        <hr>
         <h5>Detail 🤩 Component</h5>
         <passenger-detail 
             *ngFor="let psgr of passengers" 
